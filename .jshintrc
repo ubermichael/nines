@@ -1,0 +1,26 @@
+{
+  "bitwise": true,
+  "curly": true,
+  "eqeqeq": true,
+  "esversion": 6,
+  "freeze": true,
+  "futurehostile": true,
+  "globals": ["window"],
+  "latedef": true,
+  "leanswitch": true,
+  "maxdepth": 3,
+  "noarg": true,
+  "nocomma": true,
+  "nonbsp": true,
+  "nonew": true,
+  "noreturnawait": true,
+  "regexpu": true,
+  "singleGroups": true,
+  "strict": true,
+  "trailingcomma": true,
+  "undef": true,
+  "unused": true,
+  "varstmt": true,
+
+  "jquery": true
+}

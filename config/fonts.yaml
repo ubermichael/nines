@@ -1,0 +1,16 @@
+fonts:
+  path: public/fonts
+  css: public/css/fonts.css
+
+  families:
+    roboto:
+      styles: [ 'normal', 'italic' ]
+      weights: [100, 300, 400, 500, 700, 900]
+    pt-sans:
+      styles: [ 'normal', 'italic' ]
+      weights: ['100', '300', '400', '500', '700', '900']
+  formats: [ 'woff2', 'woff' ]
+  subsets: [ 'latin', 'latin-ext' ]
+
+  filename: "{id}-{weight}.{ext}"
+  prefix: 'fonts'

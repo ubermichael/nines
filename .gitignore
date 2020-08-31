@@ -1,0 +1,31 @@
+
+###> symfony/framework-bundle ###
+/.env.local
+/.env.local.php
+/.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
+/var/
+/vendor/
+###< symfony/framework-bundle ###
+
+###> symfony/phpunit-bridge ###
+.phpunit
+.phpunit.result.cache
+/phpunit.xml
+###< symfony/phpunit-bridge ###
+
+# PHPStorm config.
+/.idea
+.yarn-integrity
+public/yarn
+config/deploy.yaml
+*.sql
+jquery.collection.js
+templates/jquery.collection.html.twig
+public/docs
+.php_cs.cache
+public/fonts
+public/sass/_fonts.scss
+fonts.css
+lib
