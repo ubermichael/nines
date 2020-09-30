@@ -31,7 +31,8 @@
         "symfony/web-link": "4.4.*",
         "symfony/yaml": "4.4.*",
         "tetranz/select2entity-bundle": "^2.9",
-        "twig/string-extra": "^3.0"
+        "twig/string-extra": "^3.0",
+      "ext-imagick": "*"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.3",
