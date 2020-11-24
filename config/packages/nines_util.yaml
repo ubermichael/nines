@@ -1,4 +1,1 @@
-nines_util:
-    trim_length: 50
-    routing:
-        - { class: 'App\Entity\Foo', route: 'foo_show' }
+lib/UtilBundle/resources/config/nines_util.yaml
