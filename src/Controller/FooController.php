@@ -14,9 +14,9 @@ use App\Entity\Foo;
 use App\Form\FooType;
 use App\Repository\FooRepository;
 use Knp\Bundle\PaginatorBundle\Definition\PaginatorAwareInterface;
+use Nines\MediaBundle\Service\CitationManager;
+use Nines\MediaBundle\Services\LinkManager;
 use Nines\UtilBundle\Controller\PaginatorTrait;
-use Nines\UtilBundle\Services\LinkManager;
-use Nines\UtilBundle\Services\ReferenceManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -98,7 +98,7 @@ class FooController extends AbstractController implements PaginatorAwareInterfac
      *
      * @return array|RedirectResponse
      */
-    public function new(Request $request, LinkManager $linkManager, ReferenceManager $referenceManager) {
+    public function new(Request $request) {
         $foo = new Foo();
         $form = $this->createForm(FooType::class, $foo, ['entity' => $foo]);
         $form->handleRequest($request);
@@ -108,8 +108,8 @@ class FooController extends AbstractController implements PaginatorAwareInterfac
             $entityManager->persist($foo);
             $entityManager->flush();
 
-            $linkManager->setLinks($foo, $form->get('links')->getData());
-            $referenceManager->setReferences($foo, $form->get('references')->getData());
+//            $linkManager->setLinks($foo, $form->get('links')->getData());
+//            $referenceManager->setReferences($foo, $form->get('references')->getData());
             $entityManager->flush();
 
             $this->addFlash('success', 'The new foo has been saved.');
@@ -154,17 +154,17 @@ class FooController extends AbstractController implements PaginatorAwareInterfac
      *
      * @return array|RedirectResponse
      */
-    public function edit(Request $request, Foo $foo, LinkManager $linkManager, ReferenceManager $referenceManager) {
+    public function edit(Request $request, Foo $foo) {
         $form = $this->createForm(FooType::class, $foo, ['entity' => $foo]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $linkManager->setLinks($foo, $form->get('links')->getData());
-            $referenceManager->setReferences($foo, $form->get('references')->getData());
+//            $linkManager->setLinks($foo, $form->get('links')->getData());
+//            $referenceManager->setReferences($foo, $form->get('references')->getData());
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash('success', 'The updated foo has been saved.');
 
-//            return $this->redirectToRoute('foo_show', ['id' => $foo->getId()]);
+            return $this->redirectToRoute('foo_show', ['id' => $foo->getId()]);
         }
 
         return [

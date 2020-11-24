@@ -13,17 +13,17 @@ namespace App\Entity;
 use App\Repository\FooRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Nines\UtilBundle\Entity\AbstractEntity;
-use Nines\UtilBundle\Entity\ContributorInterface;
-use Nines\UtilBundle\Entity\ContributorTrait;
-use Nines\UtilBundle\Entity\LinkableInterface;
-use Nines\UtilBundle\Entity\LinkableTrait;
-use Nines\UtilBundle\Entity\ReferenceableInterface;
-use Nines\UtilBundle\Entity\ReferenceableTrait;
+use Nines\MediaBundle\Entity\ContributorInterface;
+use Nines\MediaBundle\Entity\ContributorTrait;
+use Nines\MediaBundle\Entity\LinkableInterface;
+use Nines\MediaBundle\Entity\LinkableTrait;
+use Nines\MediaBundle\Entity\CitationInterface;
+use Nines\MediaBundle\Entity\CitationTrait;
 
 /**
  * @ORM\Entity(repositoryClass=FooRepository::class)
  */
-class Foo extends AbstractEntity implements LinkableInterface, ContributorInterface, ReferenceableInterface {
+class Foo extends AbstractEntity implements LinkableInterface, ContributorInterface, CitationInterface {
     use LinkableTrait {
         LinkableTrait::__construct as link_construct;
     }
@@ -32,8 +32,8 @@ class Foo extends AbstractEntity implements LinkableInterface, ContributorInterf
         ContributorTrait::__construct as contrib_construct;
     }
 
-    use ReferenceableTrait {
-        ReferenceableTrait::__construct as reference_construct;
+    use CitationTrait {
+        CitationTrait::__construct as citation_construct;
     }
 
     /**
@@ -46,7 +46,7 @@ class Foo extends AbstractEntity implements LinkableInterface, ContributorInterf
         parent::__construct();
         $this->link_construct();
         $this->contrib_construct();
-        $this->reference_construct();
+        $this->citation_construct();
     }
 
     /**
