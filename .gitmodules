@@ -1,3 +1,7 @@
 [submodule "lib/Nines"]
 	path = lib/Nines
 	url = git@github.com:ubermichael/nines-bundles
+[submodule "lib"]
+	path = lib
+	url = https://github.com/ubermichael/nines-bundles
+	branch = 4.x
