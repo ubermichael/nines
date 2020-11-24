@@ -12,15 +12,15 @@ namespace App\Entity;
 
 use App\Repository\FooRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Nines\MediaBundle\Entity\ImageContainerInterface;
-use Nines\MediaBundle\Entity\ImageContainerTrait;
-use Nines\UtilBundle\Entity\AbstractEntity;
-use Nines\MediaBundle\Entity\ContributorInterface;
-use Nines\MediaBundle\Entity\ContributorTrait;
-use Nines\MediaBundle\Entity\LinkableInterface;
-use Nines\MediaBundle\Entity\LinkableTrait;
 use Nines\MediaBundle\Entity\CitationInterface;
 use Nines\MediaBundle\Entity\CitationTrait;
+use Nines\MediaBundle\Entity\ContributorInterface;
+use Nines\MediaBundle\Entity\ContributorTrait;
+use Nines\MediaBundle\Entity\ImageContainerInterface;
+use Nines\MediaBundle\Entity\ImageContainerTrait;
+use Nines\MediaBundle\Entity\LinkableInterface;
+use Nines\MediaBundle\Entity\LinkableTrait;
+use Nines\UtilBundle\Entity\AbstractEntity;
 
 /**
  * @ORM\Entity(repositoryClass=FooRepository::class)

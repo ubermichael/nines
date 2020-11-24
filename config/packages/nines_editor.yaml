@@ -1,1 +1,2 @@
-lib/EditorBundle/resources/config/nines_editor.yaml
+nines_editor:
+    upload_dir: public/uploads/tinymce
