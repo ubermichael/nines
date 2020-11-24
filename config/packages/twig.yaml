@@ -8,3 +8,7 @@ twig:
         - "@NinesUtil/form/fields.html.twig"
         - '@TetranzSelect2Entity/Form/fields.html.twig'
         - 'jquery.collection.html.twig'
+    date:
+        timezone: America/Vancouver
+        format: Y-m-d g:i:s A
+        interval_format: '%%d days'

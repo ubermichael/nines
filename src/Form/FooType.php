@@ -11,9 +11,9 @@ declare(strict_types=1);
 namespace App\Form;
 
 use App\Entity\Foo;
-use Nines\UtilBundle\Entity\LinkableInterface;
-use Nines\UtilBundle\Form\LinkType;
-use Nines\UtilBundle\Form\ReferenceType;
+use Nines\MediaBundle\Entity\LinkableInterface;
+use Nines\MediaBundle\Form\CitationType;
+use Nines\MediaBundle\Form\LinkType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -50,13 +50,13 @@ class FooType extends AbstractType {
             'data' => $entity->getLinks(),
         ]);
 
-        $builder->add('references', CollectionType::class, [
+        $builder->add('citations', CollectionType::class, [
             'label' => 'References',
             'required' => false,
             'allow_add' => true,
             'allow_delete' => true,
             'delete_empty' => true,
-            'entry_type' => ReferenceType::class,
+            'entry_type' => CitationType::class,
             'entry_options' => [
                 'label' => false,
             ],
@@ -66,7 +66,7 @@ class FooType extends AbstractType {
                 'help_block' => '',
             ],
             'mapped' => false,
-            'data' => $entity->getReferences(),
+            'data' => $entity->getCitations(),
         ]);
     }
 

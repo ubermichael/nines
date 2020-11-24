@@ -12,6 +12,8 @@ namespace App\Entity;
 
 use App\Repository\FooRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Nines\MediaBundle\Entity\ImageContainerInterface;
+use Nines\MediaBundle\Entity\ImageContainerTrait;
 use Nines\UtilBundle\Entity\AbstractEntity;
 use Nines\MediaBundle\Entity\ContributorInterface;
 use Nines\MediaBundle\Entity\ContributorTrait;
@@ -23,7 +25,11 @@ use Nines\MediaBundle\Entity\CitationTrait;
 /**
  * @ORM\Entity(repositoryClass=FooRepository::class)
  */
-class Foo extends AbstractEntity implements LinkableInterface, ContributorInterface, CitationInterface {
+class Foo extends AbstractEntity implements ImageContainerInterface, LinkableInterface, ContributorInterface, CitationInterface {
+    use ImageContainerTrait {
+        ImageContainerTrait::__construct as image_construct;
+    }
+
     use LinkableTrait {
         LinkableTrait::__construct as link_construct;
     }
@@ -44,6 +50,7 @@ class Foo extends AbstractEntity implements LinkableInterface, ContributorInterf
 
     public function __construct() {
         parent::__construct();
+        $this->image_construct();
         $this->link_construct();
         $this->contrib_construct();
         $this->citation_construct();

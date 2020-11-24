@@ -15,7 +15,7 @@ use App\Form\FooType;
 use App\Repository\FooRepository;
 use Knp\Bundle\PaginatorBundle\Definition\PaginatorAwareInterface;
 use Nines\MediaBundle\Service\CitationManager;
-use Nines\MediaBundle\Services\LinkManager;
+use Nines\MediaBundle\Service\LinkManager;
 use Nines\UtilBundle\Controller\PaginatorTrait;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -98,7 +98,7 @@ class FooController extends AbstractController implements PaginatorAwareInterfac
      *
      * @return array|RedirectResponse
      */
-    public function new(Request $request) {
+    public function new(Request $request, LinkManager $linkManager, CitationManager $citationManager) {
         $foo = new Foo();
         $form = $this->createForm(FooType::class, $foo, ['entity' => $foo]);
         $form->handleRequest($request);
@@ -108,8 +108,8 @@ class FooController extends AbstractController implements PaginatorAwareInterfac
             $entityManager->persist($foo);
             $entityManager->flush();
 
-//            $linkManager->setLinks($foo, $form->get('links')->getData());
-//            $referenceManager->setReferences($foo, $form->get('references')->getData());
+            $linkManager->setLinks($foo, $form->get('links')->getData());
+            $citationManager->setCitations($foo, $form->get('citations')->getData());
             $entityManager->flush();
 
             $this->addFlash('success', 'The new foo has been saved.');
@@ -154,13 +154,13 @@ class FooController extends AbstractController implements PaginatorAwareInterfac
      *
      * @return array|RedirectResponse
      */
-    public function edit(Request $request, Foo $foo) {
+    public function edit(Request $request, Foo $foo, LinkManager $linkManager, CitationManager $citationManager) {
         $form = $this->createForm(FooType::class, $foo, ['entity' => $foo]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-//            $linkManager->setLinks($foo, $form->get('links')->getData());
-//            $referenceManager->setReferences($foo, $form->get('references')->getData());
+            $linkManager->setLinks($foo, $form->get('links')->getData());
+            $citationManager->setCitations($foo, $form->get('citations')->getData());
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash('success', 'The updated foo has been saved.');
 
