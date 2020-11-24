@@ -18,5 +18,15 @@ nines_feedback:
   prefix: /feedback
   resource: '@NinesFeedbackBundle/Controller'
 
+nines_media:
+  type: annotation
+  prefix: /media
+  resource: '@NinesMediaBundle/Controller'
+
 nines_user:
   resource: '@NinesUserBundle/Resources/config/routes.yaml'
+
+nines_util:
+  type: annotation
+  prefix: /util
+  resource: '@NinesUtilBundle/Controller'

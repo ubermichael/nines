@@ -2,39 +2,59 @@
 
 {% block title %}Foo Details {% endblock %}
 
- {% block pageheader %} 
-    <h1>Foo Details</h1>
- {% endblock %} 
+ {% block pageheader %}
+     <h1>Foo Details</h1>
+ {% endblock %}
 
 {% block body %}
 
     {% if is_granted('ROLE_ADMIN') %}
-    <div class='btn-toolbar pull-right'>
-        <div class='btn-group'>
-            <a href="{{ path('foo_edit', {'id': foo.id }) }}" class="btn btn-default">
-                <span class="glyphicon glyphicon-edit"></span> Edit
-            </a>
+        <div class='btn-toolbar pull-right'>
+            <div class='btn-group'>
+                <a href="{{ path('foo_edit', {'id': foo.id }) }}" class="btn btn-default">
+                    <span class="glyphicon glyphicon-edit"></span> Edit </a>
+            </div>
+            <div class='btn-group'>
+                <form class='delete-form' method="post" action="{{ path('foo_delete', {'id': foo.id }) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="hidden" name="_token" value="{{ csrf_token("delete" ~ foo.id) }}">
+                    <button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+                </form>
+            </div>
         </div>
-        <div class='btn-group'>
-            <form class='delete-form' method="post" action="{{ path('foo_delete', {'id': foo.id }) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
-                <input type="hidden" name="_method" value="DELETE">
-                <input type="hidden" name="_token" value="{{ csrf_token("delete" ~ foo.id) }}">
-                <button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Delete</button>
-            </form>
-        </div>
-    </div>
     {% endif %}
 
     <table class="table table-bordered table-condensed table-hover table-striped">
         <tbody>
-                    <tr>
-            <th>Created</th>
-            <td>{{ foo.created|date }}</td>
-        </tr>
-        <tr>
-            <th>Updated</th>
-            <td>{{ foo.updated|date }}</td>
-        </tr>
+            <tr>
+                <th>Links</th>
+                <td>
+                    {% embed '@NinesUtil/link/partial/list.html.twig' with {'entity': foo} %}
+                    {% endembed %}
+                </td>
+            </tr>
+            <tr>
+                <th>References</th>
+                <td>
+                    {% embed '@NinesUtil/reference/partial/list.html.twig' with {'entity': foo } %}
+                    {% endembed %}
+                </td>
+            </tr>
+            <tr>
+                <th>Contributors</th>
+                <td>
+                    {% embed '@NinesUtil/contributor/partial/list.html.twig' with {'entity': foo} %}
+                    {% endembed %}
+                </td>
+            </tr>
+            <tr>
+                <th>Created</th>
+                <td>{{ foo.created|date }}</td>
+            </tr>
+            <tr>
+                <th>Updated</th>
+                <td>{{ foo.updated|date }}</td>
+            </tr>
         </tbody>
     </table>
 

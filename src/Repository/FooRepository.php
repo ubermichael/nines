@@ -2,23 +2,28 @@
 
 declare(strict_types=1);
 
+/*
+ * (c) 2020 Michael Joyce <mjoyce@sfu.ca>
+ * This source file is subject to the GPL v2, bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace App\Repository;
 
 use App\Entity\Foo;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
+use RuntimeException;
 
 /**
- * @method Foo|null find($id, $lockMode = null, $lockVersion = null)
- * @method Foo|null findOneBy(array $criteria, array $orderBy = null)
+ * @method null|Foo find($id, $lockMode = null, $lockVersion = null)
+ * @method null|Foo findOneBy(array $criteria, array $orderBy = null)
  * @method Foo[]    findAll()
  * @method Foo[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class FooRepository extends ServiceEntityRepository
-{
-    public function __construct(ManagerRegistry $registry)
-    {
+class FooRepository extends ServiceEntityRepository {
+    public function __construct(ManagerRegistry $registry) {
         parent::__construct($registry, Foo::class);
     }
 
@@ -28,7 +33,8 @@ class FooRepository extends ServiceEntityRepository
     public function indexQuery() {
         return $this->createQueryBuilder('foo')
             ->orderBy('foo.id')
-            ->getQuery();
+            ->getQuery()
+        ;
     }
 
     /**
@@ -37,7 +43,7 @@ class FooRepository extends ServiceEntityRepository
      * @return Collection|Foo[]
      */
     public function typeaheadSearch($q) {
-        throw new \RuntimeException("Not implemented yet.");
+        throw new RuntimeException('Not implemented yet.');
         $qb = $this->createQueryBuilder('foo');
         $qb->andWhere('foo.column LIKE :q');
         $qb->orderBy('foo.column', 'ASC');
@@ -45,6 +51,4 @@ class FooRepository extends ServiceEntityRepository
 
         return $qb->getQuery()->execute();
     }
-
-    
 }

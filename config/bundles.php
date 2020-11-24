@@ -17,11 +17,12 @@ return [
     Nines\EditorBundle\NinesEditorBundle::class => ['all' => true],
     Nines\FeedbackBundle\NinesFeedbackBundle::class => ['all' => true],
     Nines\MakerBundle\NinesMakerBundle::class => ['all' => true],
-    Nines\SolrBundle\NinesSolrBundle::class => ['all' => true],
+    Nines\MediaBundle\NinesMediaBundle::class => ['all' => true],
     Nines\UserBundle\NinesUserBundle::class => ['all' => true],
     Nines\UtilBundle\NinesUtilBundle::class => ['all' => true],
     Knp\Bundle\PaginatorBundle\KnpPaginatorBundle::class => ['all' => true],
     Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle::class => ['dev' => true, 'test' => true],
     Tetranz\Select2EntityBundle\TetranzSelect2EntityBundle::class => ['all' => true],
     Liip\TestFixturesBundle\LiipTestFixturesBundle::class => ['dev' => true, 'test' => true],
+    Knp\Bundle\MenuBundle\KnpMenuBundle::class => ['all' => true],
 ];
