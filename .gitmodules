@@ -5,3 +5,5 @@
 	path = lib
 	url = https://github.com/ubermichael/nines-bundles
 	branch = 4.x
+[submodule "lib/"]
+	branch = main
